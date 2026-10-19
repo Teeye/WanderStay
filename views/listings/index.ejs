@@ -1,0 +1,53 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+    <h1><%= searchTerm ? "Search Results" : "All Listings" %></h1>
+    <% if (searchTerm) { %>
+      <p class="text-muted">Showing results for <strong><%= searchTerm %></strong> — <%= listings.length %> listing(s) found.
+        <a href="/listings" class="ms-2">Clear search</a>
+      </p>
+    <% } %>
+   <!-- <form method="get" action="/listings/new">
+        <button>Create new Listing</button>
+    </form>-->
+
+    <% if (listings.length === 0) { %>
+      <div class="alert alert-light border mt-3" role="status">
+        <h5>No listings found</h5>
+        <p class="mb-2">Try a different property name, city, country, stay purpose, or amenity.</p>
+        <a href="/listings" class="btn btn-outline-secondary btn-sm">View all listings</a>
+      </div>
+    <% } %>
+
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
+  <% for(const listing of listings){ %>
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+<div class="card col listing-card">
+  <img src="<%= listing.image.url %>" class="card-img-top" 
+  alt="listing_image" style="height: 20rem">
+  
+  <div class="card-img-overlay"> </div>
+  <div class="card-body">
+    <p class="card-text">
+  
+      <b><%= listing.title %></b>  <br>
+        &#8377;<%= listing.price.toLocaleString("en-IN") %>/night
+    </p>
+  </div>
+</div>
+</a>
+  <% } %>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
